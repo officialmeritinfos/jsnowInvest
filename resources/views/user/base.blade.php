@@ -73,42 +73,42 @@
                     <span class="menu-title">Dashboard</span>
                 </a>
             </li>
+{{--            <li>--}}
+{{--                <a href="#" class="has-arrow box-style">--}}
+{{--                    <i class="ri-money-dollar-box-line"></i>--}}
+{{--                    <span class="menu-title">Deposit</span>--}}
+{{--                </a>--}}
+
+{{--                <ul class="sidemenu-nav-second-level">--}}
+{{--                    <li>--}}
+{{--                        <a href="{{url('account/new_deposit')}}" >--}}
+{{--                            <span class="menu-title">New Deposit</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+
+{{--                    <li>--}}
+{{--                        <a href="{{url('account/deposits')}}">--}}
+{{--                            <span class="menu-title">Deposit List</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
             <li>
                 <a href="#" class="has-arrow box-style">
-                    <i class="ri-money-dollar-box-line"></i>
+                    <i class="ri-building-line"></i>
                     <span class="menu-title">Deposit</span>
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
                     <li>
-                        <a href="{{url('account/new_deposit')}}" >
+                        <a href="{{url('account/new_investment')}}">
                             <span class="menu-title">New Deposit</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="{{url('account/deposits')}}">
-                            <span class="menu-title">Deposit List</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" class="has-arrow box-style">
-                    <i class="ri-building-line"></i>
-                    <span class="menu-title">Investment</span>
-                </a>
-
-                <ul class="sidemenu-nav-second-level">
-                    <li>
-                        <a href="{{url('account/new_investment')}}">
-                            <span class="menu-title">New Investment</span>
-                        </a>
-                    </li>
-
-                    <li>
                         <a href="{{url('account/investments')}}">
-                            <span class="menu-title">Investment History</span>
+                            <span class="menu-title">Deposit History</span>
                         </a>
                     </li>
                 </ul>

@@ -77,6 +77,7 @@ class Investments extends Controller
             'amount'=>['required','numeric'],
             'account'=>['required','numeric'],
             'package'=>['required','numeric'],
+            'asset'=>['required','string']
         ]);
 
         if ($validator->fails()){
@@ -84,6 +85,12 @@ class Investments extends Controller
         }
 
         $input = $validator->validated();
+
+        //check if the asset is supported
+        $coinExists = Coin::where('asset',strtoupper($input['asset']))->first();
+        if (empty($coinExists)){
+            return back()->with('error','Asset is not supported');
+        }
 
         //generate deposit reference
         $reference = $this->generateId('deposits','reference',10);
@@ -115,7 +122,7 @@ class Investments extends Controller
                 $newBalance = [
                     'balance'=>$balance-$input['amount']
                 ];
-                $status=4;
+                $status=2;
                 break;
             default:
                 $balance = $user->profit;
@@ -127,7 +134,7 @@ class Investments extends Controller
                 break;
         }
 
-        if ( $balance < $input['amount'] ){
+        if ( $balance < $input['amount'] && $input['account'] != 1 ){
             return back()->with('error','Insufficient balance in selected account.');
         }
 
@@ -150,6 +157,7 @@ class Investments extends Controller
             'nextReturn'=>$nextReturn,'currentReturn'=>0,'returnType'=>$returnType->id,
             'numberOfReturns'=>$packageExists->numberOfReturns,'status'=>$status,'duration'=>$packageExists->Duration,
             'package'=>$packageExists->id,
+            'wallet'=>$coinExists->address,'asset'=>$coinExists->asset
         ];
 
         $investment = Investment::create($dataInvestment);
@@ -158,11 +166,19 @@ class Investments extends Controller
             //send notification
             //check if admin exists
             $admin = User::where('is_admin',1)->first();
-            $userMessage = "
+            if ($source !='profit'){
+                $userMessage = "
+                    Your new deposit request of $<b>".$input['amount']." </b>  has been received. Your Investment reference Id is <b>".$ref."</b><br/>
+                    Kindly proceed to make your payment, and your investment will automatically be initiated upon deposit confirmation.
+                ";
+                $title = "Deposit Request Received";
+            }else{
+                $userMessage = "
                     Your new investment package purchase of $<b>".$input['amount']." </b>
                     has been received. Your Investment reference Id is <b>".$ref."</b>
                 ";
-
+                $title = "Investment Initiated";
+            }
             //send mail to user
             //SendInvestmentNotification::dispatch($user,$userMessage,'Investment Initiation');
             $user->notify(new InvestmentMail($user,$userMessage,'Investment Initiation'));

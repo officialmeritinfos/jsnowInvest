@@ -21,7 +21,6 @@
                         <th>Username</th>
                         <th>Email</th>
                         <th>Balance</th>
-                        <th>Profit</th>
                         <th>Withdrawals</th>
                         <th>Date Registered</th>
                         <th>Status</th>
@@ -35,7 +34,6 @@
                             <td>{{$option->getInvestor($investor->id)}}</td>
                             <td>{{$investor->username}}</td>
                             <td>{{$investor->email}}</td>
-                            <td>{{number_format($investor->balance,2)}}</td>
                             <td>{{number_format($investor->profit,2)}}</td>
                             <td>{{number_format($investor->withdrawals,2)}}</td>
                             <td>{{$investor->created_at}}</td>
@@ -67,7 +65,6 @@
                         <th>Username</th>
                         <th>Email</th>
                         <th>Balance</th>
-                        <th>Profit</th>
                         <th>Withdrawals</th>
                         <th>Date Registered</th>
                         <th>Status</th>
