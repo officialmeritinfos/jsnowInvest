@@ -132,6 +132,15 @@
 
     <div class="pricing-area" style="margin-bottom: 5rem;margin-top: 5rem;">
         <div class="container">
+            <div class="sec-title mb_70 text-center">
+                <h2>{{ $siteName }} Investment Plans</h2>
+                <p>
+                    At {{$siteName}}, we offer six expertly engineered investment plans, each designed to generate reliable
+                    daily returns and short-term growth. Whether you're just starting out or managing substantial wealth,
+                    our plans provide dynamic opportunities across cutting-edge asset classes. By combining innovation,
+                    strategic insight, and rigorous risk management, we help your capital grow smarter—every single day.
+                </p>
+            </div>
             <div class="row justify-content-center">
                 @foreach($packages as $package)
                     @inject('option','App\Defaults\Custom')
@@ -145,15 +154,14 @@
                             <div class="deal-bottom">
                                 <ul class="deal-item">
                                     <li>
-                                        Price: ${{number_format($package->minAmount,2)}} - @if($package->isUnlimited !=1)
+                                        Investment Range: ${{number_format($package->minAmount,2)}} - @if($package->isUnlimited !=1)
                                             ${{number_format($package->maxAmount,2)}}
                                         @else
                                             Unlimited
                                         @endif
                                     </li>
-                                    <li>Profit return: {{$package->roi}}% {{$option->getReturnType($package->returnType)}}</li>
-                                    <li>Contract Duration: {{$package->Duration}}</li>
-                                    <li>Referral Bonus: {{$package->referral}}% </li>
+                                    <li>{{$option->getReturnType($package->returnType)}} Return: {{$package->roi}}% </li>
+                                    <li>Term: {{$package->Duration}} lock-in; returns paid upon completion.</li>
                                 </ul>
                                 <div class="btn-area">
                                     <a href="{{route('register')}}">Get Started</a>
