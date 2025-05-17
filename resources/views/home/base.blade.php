@@ -446,33 +446,7 @@
         color:#0080FF;
     }
 </style>
-<script data-cfasync="false" src="#"></script><script type="text/javascript">
-    var listCountries = ['Germany', 'Spain', 'Russia', 'Italy',
-        'Italy',  'United States', 'Egypt',
-        'United Kingdom', "United States","England","Germany","Germany","United States","Switzerland",
-        "Austria","Austria","Austria","Australia","Australia","Australia","Russia","Russia",
-        "United States","United Kingdom","Spain","Spain","India","England","Italy","Ukraine"
-    ];
-    var listPlans = ['$500','$5000','$1,000','$1000','$550','$3000','$690', '$360',
-        '$700', '$600',"$500","$700","$1,000","$1289","$5000","$7000","$10000"];
-    interval = Math.floor(Math.random() * (40000 - 8000 + 1) + 8000);
-    var run = setInterval(request, interval);
 
-    function request() {
-        clearInterval(run);
-        interval = Math.floor(Math.random() * (40000 - 8000 + 1) + 8000);
-        var country = listCountries[Math.floor(Math.random() * listCountries.length)];
-        var plan = listPlans[Math.floor(Math.random() * listPlans.length)];
-        var msg = 'While you are still contemplating ,an investor from <b>' + country + '</b> ' +
-            'just traded with <a href="javascript:void(0);" onclick="javascript:void(0);">' + plan + ' .</a>';
-        $(".notifier .txt").html(msg);
-        $(".notifier").stop(true).fadeIn(300);
-        window.setTimeout(function() {
-            $(".notifier").stop(true).fadeOut(300);
-        }, 6000);
-        run = setInterval(request, interval);
-    }
-</script>
 <!-- end popup massage -->
 @stack('js')
 
