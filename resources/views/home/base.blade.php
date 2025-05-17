@@ -16,7 +16,7 @@
     <title> {{$siteName}} | {{$pageName}}</title>
     <!-- favicons Icons -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('home/images/'.$web->favicon)}}" />
-    @stack('css')
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
@@ -46,6 +46,42 @@
     <link href="{{ asset('home/css/elements-css/subscribe.css') }}" rel="stylesheet">
     <link href="{{ asset('home/css/responsive.css') }}" rel="stylesheet">
 
+
+
+    @stack('css')
+
+    <style>
+        .watkey {
+            z-index: 9;
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            padding: 4px;
+            border: 1px solid #0d9f16;
+            border-radius: 50%;
+        }
+    </style>
+
+    <style>
+        /* Custom CSS for the Float widget */
+        .telegram-float-widget {
+            position: fixed;
+            left: 10px;
+            /* Adjust the left positioning as needed */
+            bottom: 20rem;
+            /* Adjust the bottom positioning as needed */
+            z-index: 9999;
+        }
+
+        .whatsapp-float-widget {
+            position: fixed;
+            left: 70px;
+            /* Adjust the left positioning as needed */
+            bottom: 10px;
+            /* Adjust the bottom positioning as needed */
+            z-index: 9999;
+        }
+    </style>
 </head>
 
 
@@ -210,6 +246,16 @@
 
     @yield('content')
 
+
+    @if(!empty($web->phone))
+
+        <div class="telegram-float-widget">
+            <a href="https://wa.me/{{$web->phone}}" target="_blank">
+                <img src="https://cdn2.iconfinder.com/data/icons/social-media-applications/64/social_media_applications_23-whatsapp-256.png"
+                     alt="" width="50">
+            </a>
+        </div>
+    @endif
 
     <!-- main-footer -->
     <footer class="main-footer alternat-2">
